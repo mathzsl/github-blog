@@ -7,8 +7,6 @@ interface ExternalLinkContainerProps {
 export const ExternalLinkContainer = styled.a<ExternalLinkContainerProps>`
   font-size: 0.75rem;
   font-weight: 700;
-  border: none;
-  background: none;
   text-transform: uppercase;
   transition: 0.4s;
   line-height: 1.5rem;

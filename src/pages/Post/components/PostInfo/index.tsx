@@ -1,4 +1,9 @@
-import { PostInfoContainer, PostInfoFooter, PostInfoTitle } from "./styles";
+import {
+  BackButton,
+  PostInfoContainer,
+  PostInfoFooter,
+  PostInfoTitle,
+} from "./styles";
 import {
   faComment,
   faCalendarDay,
@@ -8,17 +13,22 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ExternalLink } from "../../../../components/ExternalLink";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 export function PostInfo() {
+  const navigate = useNavigate();
+
+  function goBack() {
+    navigate(-1);
+  }
+
   return (
     <PostInfoContainer>
       <header>
-        <ExternalLink
-          variant="iconLeft"
-          text="Voltar"
-          icon={<FontAwesomeIcon icon={faChevronLeft} />}
-          href="#"
-        />
+        <BackButton onClick={goBack}>
+          <FontAwesomeIcon icon={faChevronLeft} />
+          Voltar
+        </BackButton>
 
         <ExternalLink
           text="Ver no GitHub"

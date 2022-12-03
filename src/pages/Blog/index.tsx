@@ -1,4 +1,5 @@
 import { Profile } from "./components/Profile";
+import { SearchArea } from "./components/SearchArea";
 import { BlogContainer } from "./styles";
 
 export function Blog() {
@@ -6,6 +7,7 @@ export function Blog() {
     <BlogContainer>
       <main>
         <Profile />
+        <SearchArea />
       </main>
     </BlogContainer>
   );

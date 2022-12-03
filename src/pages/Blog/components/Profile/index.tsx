@@ -15,7 +15,7 @@ import { faBuilding, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 export function Profile() {
   return (
     <ProfileContainer>
-      <img src="https://github.com/filipedeschamps.png" />
+      <img src="https://github.com/matheuslima99.png" />
 
       <ProfileDetails>
         <header>

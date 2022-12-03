@@ -24,6 +24,8 @@ export interface iPost {
 export function Blog() {
   const [posts, setPosts] = useState<iPost[]>([]);
 
+  const amountPosts = posts.length;
+
   const getPosts = useCallback(
     async function loadPosts(query: string = "") {
       try {
@@ -42,13 +44,11 @@ export function Blog() {
     getPosts();
   }, []);
 
-  console.log(posts)
-
   return (
     <BlogContainer>
       <main>
         <Profile />
-        <SearchArea />
+        <SearchArea amountPosts={amountPosts} getPosts={getPosts} />
 
         <PostsAreaContainer>
           {posts.map((post) => (

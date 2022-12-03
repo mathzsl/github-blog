@@ -14,9 +14,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ExternalLink } from "../../../../components/ExternalLink";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { iPost } from "../../../Blog";
+import { relativeDateFormatter } from "../../../../utils/formatter";
+import { Spinner } from "../../../../components/Spinner";
 
-export function PostInfo() {
+interface PostInfoProps {
+  data: iPost;
+  isLoading: boolean;
+}
+
+export function PostInfo({ isLoading, data }: PostInfoProps) {
   const navigate = useNavigate();
+  let formattedDate;
+
+  if (!isLoading) {
+    formattedDate = relativeDateFormatter(data.created_at);
+  }
 
   function goBack() {
     navigate(-1);
@@ -24,39 +37,46 @@ export function PostInfo() {
 
   return (
     <PostInfoContainer>
-      <header>
-        <BackButton onClick={goBack}>
-          <FontAwesomeIcon icon={faChevronLeft} />
-          Voltar
-        </BackButton>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <header>
+            <BackButton onClick={goBack}>
+              <FontAwesomeIcon icon={faChevronLeft} />
+              Voltar
+            </BackButton>
 
-        <ExternalLink
-          text="Ver no GitHub"
-          icon={<FontAwesomeIcon icon={faUpRightFromSquare} />}
-          href="#"
-          target="_blank"
-        />
-      </header>
+            <ExternalLink
+              text="Ver no GitHub"
+              icon={<FontAwesomeIcon icon={faUpRightFromSquare} />}
+              href={data.html_url}
+              target="_blank"
+            />
+          </header>
 
-      <PostInfoTitle>JavaScript data types and data structures</PostInfoTitle>
+          <PostInfoTitle>{data.title}</PostInfoTitle>
 
-      <PostInfoFooter>
-        <ul>
-          <li>
-            <FontAwesomeIcon icon={faGithub} />
-            matheuslima99
-          </li>
+          <PostInfoFooter>
+            <ul>
+              <li>
+                <FontAwesomeIcon icon={faGithub} />
+                {data.user?.login}
+              </li>
 
-          <li>
-            <FontAwesomeIcon icon={faCalendarDay} />
-            Há 1 dia
-          </li>
+              <li>
+                <FontAwesomeIcon icon={faCalendarDay} />
+                {formattedDate}
+              </li>
 
-          <li>
-            <FontAwesomeIcon icon={faComment} />5 comentários
-          </li>
-        </ul>
-      </PostInfoFooter>
+              <li>
+                <FontAwesomeIcon icon={faComment} />
+                {data.comments} comentários
+              </li>
+            </ul>
+          </PostInfoFooter>
+        </>
+      )}
     </PostInfoContainer>
   );
 }

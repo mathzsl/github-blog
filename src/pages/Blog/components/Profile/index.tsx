@@ -73,7 +73,7 @@ export function Profile() {
               <ul>
                 <li>
                   <FontAwesomeIcon icon={faGithub} />
-                  {user.name}
+                  {user.login}
                 </li>
 
                 <li>

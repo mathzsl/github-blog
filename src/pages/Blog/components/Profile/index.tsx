@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useState } from "react";
 import { ExternalLink } from "../../../../components/ExternalLink";
 import {
   ProfileContainer,
@@ -11,43 +12,71 @@ import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import { api } from "../../../../lib/axios";
+
+const userName = import.meta.env.VITE_GITHUB_USERNAME;
+
+interface iUser {
+  login: string;
+  avatar_url: string;
+  html_url: string;
+  name: string;
+  company?: string;
+  bio: string;
+  following: number;
+}
 
 export function Profile() {
+  const [user, setUser] = useState({} as iUser);
+
+  const getProfileData = useCallback(
+    async function loadPosts() {
+      try {
+        const response = await api.get(`users/${userName}`);
+
+        setUser(response.data);
+      } finally {
+      }
+    },
+    [user]
+  );
+
+  useEffect(() => {
+    getProfileData();
+  }, []);
+
   return (
     <ProfileContainer>
-      <img src="https://github.com/matheuslima99.png" />
+      <img src={user.avatar_url} />
 
       <ProfileDetails>
         <header>
-          <ProfileName>Matheus Soares</ProfileName>
+          <ProfileName>{user.name}</ProfileName>
           <ExternalLink
             text="Github"
-            href="#"
+            href={user.html_url}
             icon={<FontAwesomeIcon icon={faUpRightFromSquare} />}
+            target="_blank"
           />
         </header>
 
-        <ProfileDescription>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-          viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
-          pulvinar vel mass.
-        </ProfileDescription>
+        <ProfileDescription>{user.bio}</ProfileDescription>
 
         <ProfileInfo>
           <ul>
             <li>
               <FontAwesomeIcon icon={faGithub} />
-              matheuslima99
+              {user.name}
             </li>
 
             <li>
               <FontAwesomeIcon icon={faBuilding} />
-              Alagoa Grande
+              {user.company ?? "--"}
             </li>
 
             <li>
               <FontAwesomeIcon icon={faUserGroup} />
-              14 seguidores
+              {user.following}
             </li>
           </ul>
         </ProfileInfo>

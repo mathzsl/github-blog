@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { Spinner } from "../../components/Spinner";
 import { api } from "../../lib/axios";
 import { Post } from "./components/Post";
 import { Profile } from "./components/Profile";
@@ -23,6 +24,7 @@ export interface iPost {
 
 export function Blog() {
   const [posts, setPosts] = useState<iPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const amountPosts = posts.length;
 
@@ -35,6 +37,7 @@ export function Blog() {
 
         setPosts(response.data.items);
       } finally {
+        setIsLoading(false);
       }
     },
     [posts]
@@ -50,11 +53,17 @@ export function Blog() {
         <Profile />
         <SearchArea amountPosts={amountPosts} getPosts={getPosts} />
 
-        <PostsAreaContainer>
-          {posts.map((post) => (
-            <Post key={post.node_id} data={post} />
-          ))}
-        </PostsAreaContainer>
+        {isLoading ? (
+          <div style={{ marginBottom: "5rem" }}>
+            <Spinner />
+          </div>
+        ) : (
+          <PostsAreaContainer>
+            {posts.map((post) => (
+              <Post key={post.node_id} data={post} />
+            ))}
+          </PostsAreaContainer>
+        )}
       </main>
     </BlogContainer>
   );

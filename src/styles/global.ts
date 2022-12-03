@@ -44,6 +44,6 @@ export const GlobalStyle = createGlobalStyle`
   }
   ::-webkit-scrollbar-thumb {
     border-radius: 2rem;
-    background: ${(props) => props.theme["base=span"]}
+    background: ${(props) => props.theme["base-span"]}
   }
 `;

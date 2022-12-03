@@ -7,3 +7,12 @@ export const BlogContainer = styled.div`
     margin: 0 auto;
   }
 `;
+
+export const PostsAreaContainer = styled.section`
+  margin-top: 3rem;
+  margin-bottom: 6rem;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+`;

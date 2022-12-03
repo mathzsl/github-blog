@@ -8,7 +8,7 @@ import { BlogContainer, PostsAreaContainer } from "./styles";
 const userName = import.meta.env.VITE_GITHUB_USERNAME;
 const repoName = import.meta.env.VITE_GITHUB_REPONAME;
 
-interface iPost {
+export interface iPost {
   title: string;
   body: string;
   created_at: string;
@@ -42,6 +42,8 @@ export function Blog() {
     getPosts();
   }, []);
 
+  console.log(posts)
+
   return (
     <BlogContainer>
       <main>
@@ -49,12 +51,9 @@ export function Blog() {
         <SearchArea />
 
         <PostsAreaContainer>
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
+          {posts.map((post) => (
+            <Post key={post.node_id} data={post} />
+          ))}
         </PostsAreaContainer>
       </main>
     </BlogContainer>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BlogContainer = styled.div`
+export const PostContainer = styled.div`
   main {
     width: 100%;
     max-width: 54rem;

@@ -1,6 +1,12 @@
+import { Profile } from "./components/Profile";
+import { BlogContainer } from "./styles";
 
 export function Blog() {
   return (
-    <h1>Pagina blog</h1>
-  )
+    <BlogContainer>
+      <main>
+        <Profile />
+      </main>
+    </BlogContainer>
+  );
 }

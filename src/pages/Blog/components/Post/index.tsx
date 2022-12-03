@@ -2,7 +2,7 @@ import { PostContainer, PostDescription, PostTitle } from "./styles";
 
 export function Post() {
   return (
-    <PostContainer>
+    <PostContainer to="/post/1">
       <header>
         <PostTitle>JavaScript data types and data structures</PostTitle>
         <span>Há 1 dia</span>

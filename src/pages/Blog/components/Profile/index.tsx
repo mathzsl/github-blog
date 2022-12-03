@@ -23,7 +23,7 @@ export function Profile() {
           <ExternalLink
             text="Github"
             href="#"
-            children={<FontAwesomeIcon icon={faUpRightFromSquare} />}
+            icon={<FontAwesomeIcon icon={faUpRightFromSquare} />}
           />
         </header>
 

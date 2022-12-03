@@ -3,20 +3,20 @@ import { ExternalLinkContainer } from "./styles";
 
 interface ExternalLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   text: string;
-  children: ReactNode;
+  icon: ReactNode;
   variant?: "iconLeft";
 }
 
 export function ExternalLink({
   text,
-  children,
+  icon,
   variant,
   ...props
 }: ExternalLinkProps) {
   return (
     <ExternalLinkContainer {...props} variant={variant}>
       {text}
-      {children}
+      {icon}
     </ExternalLinkContainer>
   );
 }

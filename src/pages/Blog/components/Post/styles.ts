@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const PostContainer = styled.article`
+export const PostContainer = styled(Link)`
   width: 100%;
   height: 16.25rem;
   padding: 2rem;
@@ -8,6 +9,7 @@ export const PostContainer = styled.article`
   overflow: hidden;
   border: 2px solid ${(props) => props.theme["base-post"]};
   transition: 0.2s;
+  color:  ${(props) => props.theme["base-text"]};
   background: ${(props) => props.theme["base-post"]};
 
   &:hover {

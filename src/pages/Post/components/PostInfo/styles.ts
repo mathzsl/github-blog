@@ -23,11 +23,19 @@ export const PostInfoTitle = styled.h1`
 export const PostInfoFooter = styled.footer`
   margin-top: 0.5rem;
 
+  @media (max-width: 425px) {
+    margin-top: 1rem;
+  }
+
   ul {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 1.5rem;
+
+    @media (max-width: 425px) {
+      justify-content: center;
+    }
 
     li {
       color: ${(props) => props.theme["base-span"]};

@@ -46,4 +46,13 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: 2rem;
     background: ${(props) => props.theme["base-span"]}
   }
+
+  @media (max-width: 768px) {
+  html {
+    font-size: 87.5%;
+  }
+
+  }
+
+
 `;
